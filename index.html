@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杭州东梓信息科技有限公司</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: '微软雅黑', sans-serif;
+            line-height: 1.6;
+        }
+
+        .header {
+            background-color: #003366;
+            color: white;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+        }
+
+        .banner {
+            background: url('https://via.placeholder.com/1920x600') center/cover;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section {
+            padding: 3rem 0;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            padding: 1.5rem;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .footer {
+            background-color: #003366;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .services {
+                grid-template-columns: 1fr;
+            }
+            .nav {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="#home">首页</a>
+            <a href="#about">关于我们</a>
+            <a href="#services">服务项目</a>
+            <a href="#contact">联系我们</a>
+        </nav>
+    </header>
+
+    <div class="banner">
+        <div>
+            <h1>杭州东梓信息科技有限公司</h1>
+            <p>专业 创新 卓越</p>
+        </div>
+    </div>
+
+    <main class="container">
+        <section id="about" class="section">
+            <h2>关于我们</h2>
+            <p>杭州东梓信息科技有限公司成立于2015年，专注于为企业提供专业的信息化解决方案。我们致力于通过技术创新推动企业发展，为客户创造长期价值。</p>
+        </section>
+
+        <section id="services" class="section">
+            <h2>我们的服务</h2>
+            <div class="services">
+                <div class="service-card">
+                    <i class="fas fa-cloud fa-3x"></i>
+                    <h3>云计算服务</h3>
+                    <p>提供安全可靠的云存储和云计算解决方案</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-mobile-alt fa-3x"></i>
+                    <h3>移动开发</h3>
+                    <p>专业的iOS/Android应用开发与优化</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-shield-alt fa-3x"></i>
+                    <h3>网络安全</h3>
+                    <p>全方位网络安全防护解决方案</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>联系我们</h2>
+            <div class="contact-info">
+                <p>地址：杭州市XXX区XXX路XXX号</p>
+                <p>电话：0571-XXXXXXX</p>
+                <p>邮箱：contact@dongzi-tech.com</p>
+            </div>
+            <form>
+                <input type="text" placeholder="姓名" required>
+                <input type="email" placeholder="邮箱" required>
+                <input type="tel" placeholder="电话">
+                <textarea placeholder="留言内容" rows="5" required></textarea>
+                <button type="submit">发送信息</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2023 杭州东梓信息科技有限公司 版权所有</p>
+        <p>浙ICP备XXXXXXX号</p>
+    </footer>
+</body>
+</html>
