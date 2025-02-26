@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +24,7 @@
             position: fixed;
             width: 100%;
             top: 0;
+            z-index: 1000;
         }
 
         .nav {
@@ -36,19 +38,84 @@
             color: white;
             text-decoration: none;
             padding: 0.5rem 1rem;
+            transition: color 0.3s;
         }
 
-        .banner {
-            background: url('https://via.placeholder.com/1920x600') center/cover;
-            height: 600px;
+        .nav a:hover {
+            color: #00b4ff;
+        }
+
+        /* 轮播图样式 */
+        .carousel-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-slide {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            margin-top: 60px;
+            transition: transform 0.5s ease-in-out;
         }
 
+        .carousel-slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 24px;
+            color: #003366;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        .dots-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: #fff;
+        }
+
+        /* 主要内容样式 */
         .container {
             max-width: 1200px;
             margin: 2rem auto;
@@ -70,6 +137,41 @@
             border: 1px solid #eee;
             border-radius: 8px;
             text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 联系表单样式 */
+        form {
+            max-width: 600px;
+            margin: 2rem auto;
+            display: grid;
+            gap: 1rem;
+        }
+
+        input,
+        textarea {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        button[type="submit"] {
+            background: #003366;
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background: #002244;
         }
 
         .footer {
@@ -77,84 +179,272 @@
             color: white;
             padding: 2rem;
             text-align: center;
+            margin-top: 4rem;
         }
 
         @media (max-width: 768px) {
             .services {
                 grid-template-columns: 1fr;
             }
+
             .nav {
                 flex-direction: column;
                 text-align: center;
             }
+
+            .carousel-slide img {
+                height: 300px;
+            }
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem 0;
+            /* 修改为左对齐 */
+            text-align: left;
+            /* 新增左对齐设置 */
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        input,
+        textarea {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 500px;
+            /* 控制输入框最大宽度 */
+        }
+
+        button[type="submit"] {
+            background: #003366;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
     <header class="header">
         <nav class="nav">
-            <a href="#home">首页</a>
-            <a href="#about">关于我们</a>
-            <a href="#services">服务项目</a>
-            <a href="#contact">联系我们</a>
+            <a href="#home">Home</a>
+            <a href="#about">About us</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact us</a>
         </nav>
     </header>
 
-    <div class="banner">
-        <div>
-            <h1>杭州东梓信息科技有限公司</h1>
-            <p>专业 创新 卓越</p>
+    <!-- 轮播图 -->
+    <div class="carousel-container">
+        <div class="carousel-slide">
+            <img src="images/company1.png" alt="CompanyEnv">
+            <img src="images/company2.png" alt="TeamWork">
+            <img src="images/company3.png" alt="Project">
         </div>
+        <button class="carousel-btn prev">❮</button>
+        <button class="carousel-btn next">❯</button>
+        <div class="dots-container"></div>
     </div>
 
     <main class="container">
         <section id="about" class="section">
-            <h2>关于我们</h2>
-            <p>杭州东梓信息科技有限公司成立于2015年，专注于为企业提供专业的信息化解决方案。我们致力于通过技术创新推动企业发展，为客户创造长期价值。</p>
+            <h2>About Dongzi</h2>
+            <p>Hangzhou Dongzi Information Technology Co., Ltd. was established on December 23, 2015, the company's
+                legal registered address: Room 5-2A, Building 5, Shangyue Green Valley Center, Wuchang Street, Yuhang
+                District, Hangzhou City, Zhejiang Province; The company's business scope is technology development,
+                technical services, technical consulting, achievement transfer: information technology, computer
+                software and hardware, computer system integration, automation control system integration, public
+                security technology prevention system integration, building intelligent system integration, services:
+                indoor and outdoor decoration engineering design and construction (operating with qualification
+                certificates), cleaning services, door-to-door maintenance, wholesale and retail of electronic products:
+                computer software and hardware, communication equipment (except international control), electronic
+                products, electronic components, office equipment, mechanical and electrical equipment, Instrumentation,
+                daily necessities, building decoration materials. The company category is a limited liability company
+                (wholly owned by natural persons), with a registered capital of 2 million yuan, and the company's
+                welfare system includes flat management, employee benefits, good colleagues, good atmosphere, job
+                promotion, etc. The company emphasizes that the application is based on being close to the needs of
+                users, and the goal is to "create value for customers" for sustainable development.</p>
         </section>
 
         <section id="services" class="section">
-            <h2>我们的服务</h2>
+            <h2>Services</h2>
             <div class="services">
                 <div class="service-card">
                     <i class="fas fa-cloud fa-3x"></i>
-                    <h3>云计算服务</h3>
-                    <p>提供安全可靠的云存储和云计算解决方案</p>
+                    <h3>Technology Development</h3>
+                    <p>Computer hardware and software development</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-mobile-alt fa-3x"></i>
-                    <h3>移动开发</h3>
-                    <p>专业的iOS/Android应用开发与优化</p>
+                    <h3>Building intelligent system integration</h3>
+                    <p>Interior and exterior decoration engineering design and construction (operating with
+                        qualification certificate)</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-shield-alt fa-3x"></i>
-                    <h3>网络安全</h3>
-                    <p>全方位网络安全防护解决方案</p>
+                    <h3>Retail</h3>
+                    <p>Communication equipment (except international special control), electronic products, electronic
+                        components</p>
                 </div>
             </div>
         </section>
 
         <section id="contact" class="section">
-            <h2>联系我们</h2>
+            <h2>Contact us</h2>
             <div class="contact-info">
-                <p>地址：杭州市XXX区XXX路XXX号</p>
-                <p>电话：0571-XXXXXXX</p>
-                <p>邮箱：contact@dongzi-tech.com</p>
+                <p>Address：Room 5-2A, Building 5, Shangyue Green Valley Center, Wuchang Street, Yuhang District,
+                    Hangzhou City, Zhejiang Province</p>
+                <p>Telephone：+86-13588863310</p>
+                <p>Email：digitalenergycloud@gmail.com</p>
             </div>
-            <form>
-                <input type="text" placeholder="姓名" required>
-                <input type="email" placeholder="邮箱" required>
-                <input type="tel" placeholder="电话">
-                <textarea placeholder="留言内容" rows="5" required></textarea>
-                <button type="submit">发送信息</button>
+            <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+                <div class="form-group">
+                    <label for="name">Name：</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email：</label>
+                    <input type="email" id="email" name="_replyto" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Telephone：</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message：</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+
+                <button type="submit">Send</button>
             </form>
         </section>
     </main>
 
     <footer class="footer">
-        <p>&copy; 2023 杭州东梓信息科技有限公司 版权所有</p>
-        <p>浙ICP备XXXXXXX号</p>
+        <p>&copy;Copyright 2023,Hangzhou Dongzi Information Technology Co., Ltd.All Right Reserved</p>
+        <p></p>
     </footer>
+
+    <script>
+        // 轮播图功能
+        const carouselSlide = document.querySelector('.carousel-slide');
+        const images = document.querySelectorAll('.carousel-slide img');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+        const dotsContainer = document.querySelector('.dots-container');
+
+        let counter = 0;
+        let size = images[0].clientWidth;
+
+        // 创建指示点
+        images.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => updateCarousel(index));
+            dotsContainer.appendChild(dot);
+        });
+
+        // 自动播放
+        let autoPlay = setInterval(() => nextSlide(), 5000);
+
+        function updateCarousel(index) {
+            counter = index;
+            carouselSlide.style.transform = `translateX(${-size * counter}px)`;
+            document.querySelectorAll('.dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === counter);
+            });
+            resetAutoPlay();
+        }
+
+        function nextSlide() {
+            counter = (counter + 1) % images.length;
+            updateCarousel(counter);
+        }
+
+        function prevSlide() {
+            counter = (counter - 1 + images.length) % images.length;
+            updateCarousel(counter);
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlay);
+            autoPlay = setInterval(() => nextSlide(), 5000);
+        }
+
+        // 事件监听
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        // 窗口调整重置
+        window.addEventListener('resize', () => {
+            carouselSlide.style.transition = 'none';
+            size = images[0].clientWidth;
+            carouselSlide.style.transform = `translateX(${-size * counter}px)`;
+            setTimeout(() => carouselSlide.style.transition = 'transform 0.5s ease-in-out');
+        });
+
+        // 触摸事件支持
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carouselSlide.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        carouselSlide.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) nextSlide();
+            if (touchStartX - touchEndX < -50) prevSlide();
+        });
+    </script>
+    <!-- 添加表单提交反馈 -->
+    <script>
+        const form = document.querySelector('form');
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+
+            try {
+                const response = await fetch(event.target.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    alert('信息已成功发送！');
+                    form.reset();
+                } else {
+                    alert('发送失败，请稍后重试');
+                }
+            } catch (error) {
+                alert('网络错误，请检查您的连接');
+            }
+        }
+
+        form.addEventListener('submit', handleSubmit);
+    </script>
 </body>
+
 </html>
